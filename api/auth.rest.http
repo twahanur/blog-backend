@@ -1,0 +1,36 @@
+# -----------------------------
+# Blog Backend - AUTH REST Client
+# -----------------------------
+
+@baseUrl = http://localhost:5000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YWUxMTQ1YTU2NDM0NGMyZTZlMDNmYiIsImVtYWlsIjoiam9obkBleGFtcGxlLmNvbSIsInJvbGUiOiJhdXRob3IiLCJpYXQiOjE3NTYyMzg4NzIsImV4cCI6MTc1Njg0MzY3Mn0.Z_B9MzGdsNJwE6DwceBiIXjYlLONLRPgPZTMEwrCP5c
+
+####################################
+# REGISTER
+####################################
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+####################################
+# LOGIN
+####################################
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+####################################
+# PROFILE (Protected)
+####################################
+GET {{baseUrl}}/api/users/me
+Authorization: Bearer {{token}}
+Content-Type: application/json

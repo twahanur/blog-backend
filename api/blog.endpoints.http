@@ -1,0 +1,150 @@
+# -----------------------------
+# Blog Backend - BLOG REST Client
+# -----------------------------
+
+@baseUrl = http://localhost:5000
+@token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YWUxMTQ1YTU2NDM0NGMyZTZlMDNmYiIsImVtYWlsIjoiam9obkBleGFtcGxlLmNvbSIsInJvbGUiOiJhdXRob3IiLCJpYXQiOjE3NTYyNzI3MDksImV4cCI6MTc1Njg3NzUwOX0.yjVaSJb9iyVEG9HAAFPrCpZW2Dgnzk0JF4gQTtXQpDs"
+@categoryId = "68ae18f8ed939f95d46b7da7"
+@tagId = 68ae988bc6ccfe9f1edbdc0b
+@postId = REPLACE_WITH_POST_ID
+
+####################################
+# CATEGORIES
+####################################
+
+### Create Category - Programming
+POST {{baseUrl}}/api/categories
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Programming",
+  "slug": "programming"
+}
+
+### Create Category - Web Development
+POST {{baseUrl}}/api/categories
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Web Development",
+  "slug": "web-development"
+}
+
+### Create Category - Data Science
+POST {{baseUrl}}/api/categories
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Data Science",
+  "slug": "data-science"
+}
+
+### Get All Categories
+GET {{baseUrl}}/api/categories
+Content-Type: application/json
+
+####################################
+# TAGS
+####################################
+
+### Create Tag - JavaScript
+POST {{baseUrl}}/api/tags
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "JavaScript",
+  "slug": "javascript"
+}
+
+### Create Tag - React
+POST {{baseUrl}}/api/tags
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "NEXTJS",
+  "slug": "nextjs"
+}
+
+### Create Tag - Node.js
+POST {{baseUrl}}/api/tags
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Node.js",
+  "slug": "node-js"
+}
+
+### Get All Tags
+GET {{baseUrl}}/api/tags
+Content-Type: application/json
+
+####################################
+# POSTS
+####################################
+
+### Add Post 1
+POST {{baseUrl}}/api/posts
+Content-Type: multipart/+form-data
+
+title=Getting Started with JavaScript
+content=This is a complete beginner guide to JavaScript.
+category={{categoryId}}
+tags=["{{tagId}}"]
+seo={"metaTitle":"JS Guide","metaDescription":"Learn JavaScript from scratch"}
+published=true
+
+
+### Add Post 2
+POST {{baseUrl}}/api/posts
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data
+
+title=React for Beginners
+content=Introduction to React with practical examples.
+category={{categoryId}}
+tags=["{{tagId}}"]
+seo={"metaTitle":"React Guide","metaDescription":"Learn React basics"}
+published=true
+image=@/path/to/react-image.jpg
+
+### Add Post 3
+POST {{baseUrl}}/api/posts
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data
+
+title=Node.js API Development
+content=Learn how to create APIs using Node.js and Express.
+category={{categoryId}}
+tags=["{{tagId}}"]
+seo={"metaTitle":"Node.js API","metaDescription":"Node.js backend guide"}
+published=true
+image=@/path/to/node-image.jpg
+
+### Get All Posts
+GET {{baseUrl}}/api/posts
+Content-Type: application/json
+
+### Get Single Post
+GET {{baseUrl}}/api/posts/{{postId}}
+Content-Type: application/json
+
+### Update Post
+PUT {{baseUrl}}/api/posts/{{postId}}
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data
+
+title=Updated Blog Title
+content=Updated blog content with new information
+published=false
+image=@/path/to/new-image.jpg
+
+### Delete Post
+DELETE {{baseUrl}}/api/posts/{{postId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
